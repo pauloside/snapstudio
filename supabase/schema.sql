@@ -84,10 +84,22 @@ create index photos_gallery_sort_idx on public.photos(gallery_id, sort_order);
 create index payments_session_idx on public.payments(session_id);
 
 create or replace function public.is_photographer()
-returns boolean language sql stable security definer set search_path = public
-as $$
-  select exists (select 1 from public.profiles where id = auth.uid() and role = 'photographer');
-$$;
+returns boolean
+language sql
+stable
+security definer
+set search_path = ''
+as $
+  select exists (
+    select 1
+    from public.profiles
+    where id = (select auth.uid())
+      and role = 'photographer'::public.user_role
+  );
+$;
+
+revoke all on function public.is_photographer() from public;
+grant execute on function public.is_photographer() to anon, authenticated;
 
 alter table public.profiles enable row level security;
 alter table public.packages enable row level security;
@@ -97,12 +109,28 @@ alter table public.photos enable row level security;
 alter table public.photo_favorites enable row level security;
 alter table public.payments enable row level security;
 
-create policy "Users can view their own profile" on public.profiles for select
-  using (id = auth.uid() or public.is_photographer());
-create policy "Users can update their own profile details" on public.profiles for update
-  using (id = auth.uid()) with check (id = auth.uid() and role = (select p.role from public.profiles p where p.id = auth.uid()));
-create policy "Photographers manage profiles" on public.profiles for all
-  using (public.is_photographer()) with check (public.is_photographer());
+-- Keep profile roles out of client-controlled updates. Photographer promotion is
+-- an owner/admin action in the SQL editor, never a signup form field.
+revoke update on table public.profiles from authenticated;
+grant update (full_name) on table public.profiles to authenticated;
+
+-- Explicit API grants: row-level security remains the record-level gate.
+grant select on public.profiles to authenticated;
+grant select on public.packages to anon, authenticated;
+grant insert, select, update, delete on public.packages to authenticated;
+grant select, insert, update, delete on public.sessions to authenticated;
+grant select, insert, update, delete on public.galleries to authenticated;
+grant select, insert, update, delete on public.photos to authenticated;
+grant select, insert, delete on public.photo_favorites to authenticated;
+grant select on public.payments to authenticated;
+
+create policy "Users view own profile and photographers view all profiles"
+  on public.profiles for select
+  using (id = (select auth.uid()) or (select public.is_photographer()));
+create policy "Users update only their own profile"
+  on public.profiles for update
+  using (id = (select auth.uid()))
+  with check (id = (select auth.uid()));
 
 create policy "Public can view active packages" on public.packages for select using (is_active or public.is_photographer());
 create policy "Photographers manage packages" on public.packages for all
