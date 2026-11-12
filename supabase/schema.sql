@@ -144,3 +144,19 @@ create policy "Photographers manage payment records" on public.payments for all
 -- Promote the first photographer profile manually from the Supabase SQL editor
 -- after that user has registered:
 -- update public.profiles set role = 'photographer' where id = '<AUTH_USER_UUID>';
+
+
+-- Automatically create a client profile whenever a user registers.
+create or replace function public.handle_new_user()
+returns trigger language plpgsql security definer set search_path = public
+as $$
+begin
+  insert into public.profiles (id, full_name, role)
+  values (new.id, coalesce(new.raw_user_meta_data ->> 'full_name', ''), 'client');
+  return new;
+end;
+$$;
+
+create trigger on_auth_user_created
+  after insert on auth.users
+  for each row execute procedure public.handle_new_user();
