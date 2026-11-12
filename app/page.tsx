@@ -23,7 +23,7 @@ export default function Home() {
           <span className="eyebrow">Photography, with feeling</span>
           <h1>Moments,<br /><em>beautifully</em><br />kept.</h1>
           <p>Honest photographs for the people, places and seasons you never want to forget. Thoughtfully made, carefully finished, yours to keep.</p>
-          <div className="hero-actions"><a className="button-primary" href="#book">Let's make something ↗</a><a className="text-link" href="#portfolio">Explore the work</a></div>
+          <div className="hero-actions"><a className="button-primary" href="#book">Let&apos;s make something ↗</a><a className="text-link" href="#portfolio">Explore the work</a></div>
         </div>
         <div className="hero-image" role="img" aria-label="Editorial portrait photography"><span className="hero-note">People · Portraits · Stories</span></div>
       </section>
@@ -38,21 +38,21 @@ export default function Home() {
 
       <section className="split-section" id="experience">
         <div className="split-image" role="img" aria-label="A couple sharing a moment during a photography session" />
-        <div className="split-copy"><span className="eyebrow">More than a photoshoot</span><h2>A little less posing. A lot more you.</h2><p>We believe the best photographs happen when you can simply be yourself. We'll guide you when you need it, give you room when you don't, and take care of the details from booking to delivery.</p><p>Your finished photographs arrive in a private online gallery. Choose your favourites, download the images you love and share the memories with the people who matter.</p><a className="text-link" href="#book">Plan your session ↗</a></div>
+        <div className="split-copy"><span className="eyebrow">More than a photoshoot</span><h2>A little less posing. A lot more you.</h2><p>We believe the best photographs happen when you can simply be yourself. We&apos;ll guide you when you need it, give you room when you don&apos;t, and take care of the details from booking to delivery.</p><p>Your finished photographs arrive in a private online gallery. Choose your favourites, download the images you love and share the memories with the people who matter.</p><a className="text-link" href="#book">Plan your session ↗</a></div>
       </section>
 
       <section className="section">
         <div className="section-heading"><span className="eyebrow">Simple from the start</span><h2>From first hello to forever.</h2><p>A clear, considered process—so you can spend less time organising and more time looking forward to it.</p></div>
-        <div className="steps"><article className="step"><div className="step-number">01</div><h3>Choose your session</h3><p>Explore the packages and send us your preferred date. We'll confirm the details together.</p></article><article className="step"><div className="step-number">02</div><h3>Enjoy the moment</h3><p>Show up, settle in and let us take care of capturing the moments that matter.</p></article><article className="step"><div className="step-number">03</div><h3>Keep your story</h3><p>Receive your private gallery, pick your favourites and download your finished photographs.</p></article></div>
+        <div className="steps"><article className="step"><div className="step-number">01</div><h3>Choose your session</h3><p>Explore the packages and send us your preferred date. We&apos;ll confirm the details together.</p></article><article className="step"><div className="step-number">02</div><h3>Enjoy the moment</h3><p>Show up, settle in and let us take care of capturing the moments that matter.</p></article><article className="step"><div className="step-number">03</div><h3>Keep your story</h3><p>Receive your private gallery, pick your favourites and download your finished photographs.</p></article></div>
       </section>
 
       <section className="section gallery-section" id="portfolio">
-        <div className="section-heading"><span className="eyebrow" style={{color:"#c2c7a9"}}>A few stories we've loved</span><h2>Made to feel like you.</h2><p>A visual direction for the SnapStudio portfolio. Photography shown here is illustrative while the studio's own work is being added.</p></div>
+        <div className="section-heading"><span className="eyebrow" style={{color:"#c2c7a9"}}>A few stories we&apos;ve loved</span><h2>Made to feel like you.</h2><p>A visual direction for the SnapStudio portfolio. Photography shown here is illustrative while the studio&apos;s own work is being added.</p></div>
         <div className="gallery-grid"><div className="gallery-tile" /><div className="gallery-tile" /><div className="gallery-tile" /><div className="gallery-tile" /><div className="gallery-tile" /></div>
       </section>
 
       <section className="booking-section" id="book">
-        <div className="booking-copy"><span className="eyebrow">Your story starts here</span><h2>Let's make a little magic.</h2><p>Tell us what you have in mind and when you'd love to make it happen. We'll be in touch to talk through the details.</p><p style={{marginTop:30,fontSize:12}}>Prefer a conversation?<br /><strong>hello@snapstudio.example</strong></p><p style={{fontSize:10,color:"#96948a"}}>Studio location and contact details will be updated before launch.</p></div>
+        <div className="booking-copy"><span className="eyebrow">Your story starts here</span><h2>Let&apos;s make a little magic.</h2><p>Tell us what you have in mind and when you&apos;d love to make it happen. We&apos;ll be in touch to talk through the details.</p><p style={{marginTop:30,fontSize:12}}>Prefer a conversation?<br /><strong>hello@snapstudio.example</strong></p><p style={{fontSize:10,color:"#96948a"}}>Studio location and contact details will be updated before launch.</p></div>
         <BookingForm />
       </section>
 
