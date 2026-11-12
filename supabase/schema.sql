@@ -89,14 +89,14 @@ language sql
 stable
 security definer
 set search_path = ''
-as $
+as $$
   select exists (
     select 1
     from public.profiles
     where id = (select auth.uid())
       and role = 'photographer'::public.user_role
   );
-$;
+$$;
 
 revoke all on function public.is_photographer() from public;
 grant execute on function public.is_photographer() to anon, authenticated;
